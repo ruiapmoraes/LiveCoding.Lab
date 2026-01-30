@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exercises\Arrays\" />
     <Folder Include="Exercises\Hashing\" />
     <Folder Include="Exercises\TwoPointers\" />
     <Folder Include="Exercises\Stacks\" />

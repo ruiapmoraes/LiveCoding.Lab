@@ -1,4 +1,5 @@
-﻿using LiveCoding.Lab.Core.Exercises.Strings;
+﻿using LiveCoding.Lab.Core.Exercises.Arrays;
+using LiveCoding.Lab.Core.Exercises.Strings;
 
 //// Exercise: Remove Vowels from a String
 //var text = "Hello, Live Coding Lab!";
@@ -14,10 +15,11 @@ var demos = new Dictionary<int, (string Title, Action Run)>
 {
     {1, ("Strings: RemoveVowels", Demo_RemoveVowels) },
     {2, ("Strings: ReverString", Demo_ReverseString) },
-    {3, ("Strings: PalindromeCheck", Demo_PalindromeCheck)  },
+    {3, ("Strings: PalindromeCheck", Demo_PalindromeCheck) },
+    {4, ("Arrays: TwoSum", Demo_TwoSum) },
 };
 
-void Demo_ReverseString()
+static void Demo_ReverseString()
 {
     var input = "Hello Rui, live coding is training";
     var output = RemoveVowels.Execute(input);
@@ -42,8 +44,18 @@ static void Demo_PalindromeCheck()
 
     Console.WriteLine($"Input: {input}.");
     Console.WriteLine($"Result: {result}.");
+}
 
+static void Demo_TwoSum() 
+{
+    var numbers = new[] { 2, 7, 11, 15 };
+    var target = 9;
 
+    var result = TwoSum.Execute(numbers, target);
+
+    Console.WriteLine($"Numbers : [{string.Join(", ", numbers)}]");
+    Console.WriteLine($"Target  : {target}");
+    Console.WriteLine($"Result  : [{string.Join(", ", result)}]");
 }
 
 while (true)
