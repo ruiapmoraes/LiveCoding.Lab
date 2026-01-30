@@ -14,6 +14,7 @@ var demos = new Dictionary<int, (string Title, Action Run)>
 {
     {1, ("Strings: RemoveVowels", Demo_RemoveVowels) },
     {2, ("Strings: ReverString", Demo_ReverseString) },
+    {3, ("Strings: PalindromeCheck", Demo_PalindromeCheck)  },
 };
 
 void Demo_ReverseString()
@@ -32,6 +33,17 @@ static void Demo_RemoveVowels()
 
     Console.WriteLine($"Input: {input}");
     Console.WriteLine($"Output: {output}");
+}
+
+static void Demo_PalindromeCheck()
+{
+    var input = "A man a plan a canal Panama";
+    var result = PalindromeCheck.Execute(input);
+
+    Console.WriteLine($"Input: {input}.");
+    Console.WriteLine($"Result: {result}.");
+
+
 }
 
 while (true)
