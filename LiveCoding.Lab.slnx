@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="LiveCoding.Lab.Api/LiveCoding.Lab.Api.csproj" Id="f37578ba-b3ee-4aec-a085-f10e3200d5cd" />
+  <Project Path="LiveCoding.Lab.App/LiveCoding.Lab.App.csproj" Id="cc21c3bb-d3c0-49cc-8603-309a93cc50da" />
+  <Project Path="LiveCoding.Lab.Core/LiveCoding.Lab.Core.csproj" />
+  <Project Path="LiveCoding.Lab.Tests/LiveCoding.Lab.Tests.csproj" Id="bf2ad26c-6918-4ec9-9e37-738a6a13c640" />
+</Solution>
