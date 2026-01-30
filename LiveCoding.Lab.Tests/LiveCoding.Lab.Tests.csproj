@@ -15,7 +15,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LiveCoding.Lab.Core\LiveCoding.Lab.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Arrays\" />
+    <Folder Include="StackQueue\" />
+    <Folder Include="Strings\" />
   </ItemGroup>
 
 </Project>
