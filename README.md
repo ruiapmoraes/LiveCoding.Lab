@@ -381,5 +381,5 @@ Projeto desenvolvido como material de estudo em **live coding** sessions.
 
 Este projeto está disponível para fins educacionais.
 
-**Última atualização**: 2024  
+**Última atualização**: 2026  
 **Status**: Em desenvolvimento 🔄
