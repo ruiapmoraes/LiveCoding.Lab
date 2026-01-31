@@ -22,7 +22,7 @@ var demos = new Dictionary<int, (string Title, Action Run)>
 static void Demo_ReverseString()
 {
     var input = "Hello Rui, live coding is training";
-    var output = RemoveVowels.Execute(input);
+    var output = ReverseString.Execute(input);
 
     Console.WriteLine($"Input: {input}");
     Console.WriteLine($"Output: {output}");
