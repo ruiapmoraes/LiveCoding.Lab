@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Exercises\Hashing\" />
     <Folder Include="Exercises\TwoPointers\" />
-    <Folder Include="Exercises\Stacks\" />
   </ItemGroup>
 
 </Project>
