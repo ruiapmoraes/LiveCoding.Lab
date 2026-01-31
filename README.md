@@ -23,7 +23,8 @@ LiveCoding.Lab/
 │   │   ├── Strings/                  # Exercícios com strings
 │   │   │   ├── RemoveVowels.cs
 │   │   │   ├── ReverseString.cs
-│   │   │   └── PalindromeCheck.cs
+│   │   │   ├── PalindromeCheck.cs
+│   │   │   └── CountCharacterOccurrences.cs
 │   │   ├── Arrays/                   # Exercícios com arrays
 │   │   │   └── TwoSum.cs
 │   │   └── StackQueue/               # Exercícios com Stack/Queue
@@ -36,7 +37,8 @@ LiveCoding.Lab/
 │   ├── Strings/
 │   │   ├── RemoveVowelsTests.cs
 │   │   ├── ReverseStringTests.cs
-│   │   └── PalindromeCheckTests.cs
+│   │   ├── PalindromeCheckTests.cs
+│   │   └── CountCharacterOccurrencesTests.cs
 │   ├── Arrays/
 │   │   └── TwoSumTests.cs
 │   └── StackQueue/
@@ -161,9 +163,74 @@ Retorna true
 
 ---
 
+#### 4. **Count Character Occurrences** (Contar Ocorrências de Caracteres)
+
+**Arquivo**: `LiveCoding.Lab.Core/Exercises/Strings/CountCharacterOccurrences.cs`
+
+**Descrição**:
+Conta a frequência de cada caractere em uma string e retorna um dicionário com os caracteres e suas ocorrências. Case-sensitive (maiúsculas e minúsculas são diferentes).
+
+**Implementação**:
+- Usa `Dictionary<char, int>` para armazenar caracteres e suas contagens
+- Itera por cada caractere da string
+- Se o caractere já existe no dicionário, incrementa o contador
+- Se o caractere é novo, adiciona com valor 1
+- Retorna um dicionário vazio se a entrada for null ou vazia
+
+**Exemplo de Uso**:
+```csharp
+var result = CountCharacterOccurrences.Execute("banana");
+Console.WriteLine($"b: {result['b']}");  // Saída: b: 1
+Console.WriteLine($"a: {result['a']}");  // Saída: a: 3
+Console.WriteLine($"n: {result['n']}");  // Saída: n: 2
+
+// Iterar sobre o dicionário
+foreach (var kvp in result)
+{
+    Console.WriteLine($"'{kvp.Key}': {kvp.Value}");
+}
+// Saída:
+// 'b': 1
+// 'a': 3
+// 'n': 2
+```
+
+**Casos de Teste**:
+- ✅ Conta corretamente caracteres em "banana" (b:1, a:3, n:2)
+- ✅ Retorna dicionário vazio para string vazia
+- ✅ Case-sensitive (maiúsculas e minúsculas contadas separadamente)
+
+**Complexidade**:
+- Tempo: O(n) - itera uma vez sobre cada caractere
+- Espaço: O(k) - onde k é o número de caracteres únicos (máximo 26 para letras ASCII)
+
+**Estrutura de Dados - Dictionary**:
+```
+Dictionary<TKey, TValue>
+- Armazena pares chave-valor
+- Acesso rápido em O(1) por chave
+- TryGetValue() para consultas seguras
+- ContainsKey() para verificar existência
+
+Exemplo:
+Dictionary<char, int> freq = new();
+freq['a'] = 1;      // Adiciona ou sobrescreve
+freq['a']++;        // Incrementa valor
+bool exists = freq.ContainsKey('a');  // true
+```
+
+**Alternativa com LINQ**:
+```csharp
+var result = input
+    .GroupBy(c => c)
+    .ToDictionary(g => g.Key, g => g.Count());
+```
+
+---
+
 ### 📦 Exercícios com Arrays
 
-#### 4. **Two Sum** (Encontrar Dois Números)
+#### 5. **Two Sum** (Encontrar Dois Números)
 
 **Arquivo**: `LiveCoding.Lab.Core/Exercises/Arrays/TwoSum.cs`
 
@@ -209,7 +276,7 @@ Lança exceção (não encontrado)
 
 ### 📚 Exercícios com Stack/Queue
 
-#### 5. **Valid Parentheses** (Validar Parênteses Balanceados)
+#### 6. **Valid Parentheses** (Validar Parênteses Balanceados)
 
 **Arquivo**: `LiveCoding.Lab.Core/Exercises/StackQueue/ValidParentheses.cs`
 
@@ -404,8 +471,9 @@ namespace LiveCoding.Lab.Core.Exercises.[Categoria]
 | 1 | Remove Vowels | String | ⭐ Fácil | O(n) / O(n) | StringBuilder, String manipulation |
 | 2 | Reverse String | String | ⭐ Fácil | O(n) / O(n) | Array reverse, String conversion |
 | 3 | Palindrome Check | String | ⭐⭐ Intermediário | O(n) / O(n) | Two-pointer, String normalization |
-| 4 | Two Sum | Array | ⭐⭐ Intermediário | O(n) / O(n) | Hash map, Complement calculation |
-| 5 | Valid Parentheses | Stack | ⭐⭐ Intermediário | O(n) / O(n) | Stack, Parsing, Aninhamento |
+| 4 | Count Character Occurrences | String | ⭐⭐ Intermediário | O(n) / O(k) | Hash map, Frequency counting |
+| 5 | Two Sum | Array | ⭐⭐ Intermediário | O(n) / O(n) | Hash map, Complement calculation |
+| 6 | Valid Parentheses | Stack | ⭐⭐ Intermediário | O(n) / O(n) | Stack, Parsing, Aninhamento |
 
 ### Legenda:
 - **Tempo / Espaço**: Complexidade de Tempo / Espaço

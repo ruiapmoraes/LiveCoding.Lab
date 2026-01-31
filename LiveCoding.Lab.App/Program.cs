@@ -19,6 +19,7 @@ var demos = new Dictionary<int, (string Title, Action Run)>
     {3, ("Strings: PalindromeCheck", Demo_PalindromeCheck) },
     {4, ("Arrays: TwoSum", Demo_TwoSum) },
     {5, ("Stack/Queue: ValidParentheses", Demo_ValidParentheses) },
+    { 6, ("Strings: CountCharacterOccurrences", Demo_CountCharacterOccurrences) },
 };
 
 static void Demo_ReverseString()
@@ -75,6 +76,20 @@ static void Demo_ValidParentheses()
     {
         var result = ValidParentheses.Execute(input);
         Console.WriteLine($"Input: {input,-10} -> {result}");
+    }
+}
+
+static void Demo_CountCharacterOccurrences()
+{
+    var input = "banana";
+    var result = CountCharacterOccurrences.Execute(input);
+
+    Console.WriteLine($"Input: {input}");
+    Console.WriteLine("Result:");
+
+    foreach (var(key, value) in result) 
+    {
+        Console.WriteLine($"{key} -> {value}");
     }
 }
 
