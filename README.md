@@ -24,7 +24,8 @@ LiveCoding.Lab/
 │   │   │   ├── RemoveVowels.cs
 │   │   │   ├── ReverseString.cs
 │   │   │   ├── PalindromeCheck.cs
-│   │   │   └── CountCharacterOccurrences.cs
+│   │   │   ├── CountCharacterOccurrences.cs
+│   │   │   └── AnagramCheck.cs
 │   │   ├── Arrays/                   # Exercícios com arrays
 │   │   │   └── TwoSum.cs
 │   │   └── StackQueue/               # Exercícios com Stack/Queue
@@ -38,7 +39,8 @@ LiveCoding.Lab/
 │   │   ├── RemoveVowelsTests.cs
 │   │   ├── ReverseStringTests.cs
 │   │   ├── PalindromeCheckTests.cs
-│   │   └── CountCharacterOccurrencesTests.cs
+│   │   ├── CountCharacterOccurrencesTests.cs
+│   │   └── AnagramCheckTests.cs
 │   ├── Arrays/
 │   │   └── TwoSumTests.cs
 │   └── StackQueue/
@@ -228,9 +230,80 @@ var result = input
 
 ---
 
+#### 5. **Anagram Check** (Verificar Anagrama)
+
+**Arquivo**: `LiveCoding.Lab.Core/Exercises/Strings/AnagramCheck.cs`
+
+**Descrição**:
+Verifica se duas strings são anagramas uma da outra. Um anagrama é uma palavra formada pela rearranjo das letras de outra palavra. A verificação ignora espaços, pontuação e diferenças de maiúscula/minúscula.
+
+**Implementação**:
+- Normaliza ambas as strings (remove não-alfanuméricos, converte para maiúsculas)
+- Verifica se têm o mesmo comprimento (pré-requisito para anagrama)
+- Cria um dicionário com contagem de caracteres da primeira string
+- Itera pela segunda string decrementando as contagens
+- Se algum caractere não existe ou a contagem chega a zero, retorna false
+- Retorna true se o dicionário ficar vazio ao final
+
+**Exemplo de Uso**:
+```csharp
+// Anagramas válidos
+var result1 = AnagramCheck.Execute("listen", "silent");
+Console.WriteLine(result1);  // Saída: true
+
+var result2 = AnagramCheck.Execute("evil", "vile");
+Console.WriteLine(result2);  // Saída: true
+
+// Com espaços e maiúsculas
+var result3 = AnagramCheck.Execute("Dormitory", "Dirty room");
+Console.WriteLine(result3);  // Saída: true (remove espaços e normaliza)
+
+// Não são anagramas
+var result4 = AnagramCheck.Execute("live", "coding");
+Console.WriteLine(result4);  // Saída: false
+```
+
+**Casos de Teste**:
+- ✅ "listen" e "silent" são anagramas → true
+- ✅ "evil" e "vile" são anagramas → true
+- ✅ "restful" e "fluster" são anagramas → true
+- ✅ "live" e "coding" não são anagramas → false
+- ✅ "Dormitory" e "Dirty room" são anagramas (ignora espaços/case) → true
+- ✅ Entrada null retorna false
+
+**Complexidade**:
+- Tempo: O(n + m) - normaliza ambas as strings e itera sobre elas
+- Espaço: O(k) - dicionário armazena até k caracteres únicos
+
+**Algoritmo de Verificação**:
+```
+1. Verificar se ambas as strings são não-null
+2. Normalizar ambas (remover não-alfanuméricos, maiúsculas)
+3. Se comprimentos diferentes → false
+4. Contar caracteres da primeira string em dicionário
+5. Para cada caractere da segunda:
+   - Se não existe no dicionário → false
+   - Decrementar contador
+   - Se chegar a 0, remover do dicionário
+6. Se dicionário vazio → true (anagrama)
+```
+
+**Método Auxiliar - Normalize**:
+```csharp
+private static string Normalize(string input) =>
+    new string(
+        input
+            .Where(char.IsLetterOrDigit)    // Remove espaços, pontuação
+            .Select(char.ToUpperInvariant)  // Converte para maiúsculas
+            .ToArray()
+    );
+```
+
+---
+
 ### 📦 Exercícios com Arrays
 
-#### 5. **Two Sum** (Encontrar Dois Números)
+#### 6. **Two Sum** (Encontrar Dois Números)
 
 **Arquivo**: `LiveCoding.Lab.Core/Exercises/Arrays/TwoSum.cs`
 
@@ -276,7 +349,7 @@ Lança exceção (não encontrado)
 
 ### 📚 Exercícios com Stack/Queue
 
-#### 6. **Valid Parentheses** (Validar Parênteses Balanceados)
+#### 7. **Valid Parentheses** (Validar Parênteses Balanceados)
 
 **Arquivo**: `LiveCoding.Lab.Core/Exercises/StackQueue/ValidParentheses.cs`
 
@@ -472,8 +545,9 @@ namespace LiveCoding.Lab.Core.Exercises.[Categoria]
 | 2 | Reverse String | String | ⭐ Fácil | O(n) / O(n) | Array reverse, String conversion |
 | 3 | Palindrome Check | String | ⭐⭐ Intermediário | O(n) / O(n) | Two-pointer, String normalization |
 | 4 | Count Character Occurrences | String | ⭐⭐ Intermediário | O(n) / O(k) | Hash map, Frequency counting |
-| 5 | Two Sum | Array | ⭐⭐ Intermediário | O(n) / O(n) | Hash map, Complement calculation |
-| 6 | Valid Parentheses | Stack | ⭐⭐ Intermediário | O(n) / O(n) | Stack, Parsing, Aninhamento |
+| 5 | Anagram Check | String | ⭐⭐ Intermediário | O(n+m) / O(k) | Hash map, String normalization |
+| 6 | Two Sum | Array | ⭐⭐ Intermediário | O(n) / O(n) | Hash map, Complement calculation |
+| 7 | Valid Parentheses | Stack | ⭐⭐ Intermediário | O(n) / O(n) | Stack, Parsing, Aninhamento |
 
 ### Legenda:
 - **Tempo / Espaço**: Complexidade de Tempo / Espaço

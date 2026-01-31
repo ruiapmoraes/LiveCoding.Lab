@@ -19,7 +19,8 @@ var demos = new Dictionary<int, (string Title, Action Run)>
     {3, ("Strings: PalindromeCheck", Demo_PalindromeCheck) },
     {4, ("Arrays: TwoSum", Demo_TwoSum) },
     {5, ("Stack/Queue: ValidParentheses", Demo_ValidParentheses) },
-    { 6, ("Strings: CountCharacterOccurrences", Demo_CountCharacterOccurrences) },
+    {6, ("Strings: CountCharacterOccurrences", Demo_CountCharacterOccurrences) },
+    {7, ("Strings: AnagramCheck", Demo_AnagramCheck) },
 };
 
 static void Demo_ReverseString()
@@ -90,6 +91,24 @@ static void Demo_CountCharacterOccurrences()
     foreach (var(key, value) in result) 
     {
         Console.WriteLine($"{key} -> {value}");
+    }
+}
+
+static void Demo_AnagramCheck() 
+{
+    var pairs = new[] 
+    {
+        ("listen", "silent"),
+        ("evil", "vile"),
+        ("restful", "fluster"),
+        ("live", "coding"),
+        ("Dormitory", "Dirty room")
+    };
+
+    foreach (var (first, second) in pairs)
+    {
+        var result = AnagramCheck.Execute(first, second);
+        Console.WriteLine($"{first} / {second} -> {result}");
     }
 }
 
