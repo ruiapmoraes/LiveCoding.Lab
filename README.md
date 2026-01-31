@@ -24,8 +24,10 @@ LiveCoding.Lab/
 │   │   │   ├── RemoveVowels.cs
 │   │   │   ├── ReverseString.cs
 │   │   │   └── PalindromeCheck.cs
-│   │   └── Arrays/                   # Exercícios com arrays
-│   │       └── TwoSum.cs
+│   │   ├── Arrays/                   # Exercícios com arrays
+│   │   │   └── TwoSum.cs
+│   │   └── StackQueue/               # Exercícios com Stack/Queue
+│   │       └── ValidParentheses.cs
 │
 ├── LiveCoding.Lab.App/               # Aplicação console para testar
 │   └── Program.cs
@@ -35,8 +37,10 @@ LiveCoding.Lab/
 │   │   ├── RemoveVowelsTests.cs
 │   │   ├── ReverseStringTests.cs
 │   │   └── PalindromeCheckTests.cs
-│   └── Arrays/
-│       └── TwoSumTests.cs
+│   ├── Arrays/
+│   │   └── TwoSumTests.cs
+│   └── StackQueue/
+│       └── ValidParenthesesTests.cs
 │
 ├── README.md
 └── .gitignore
@@ -203,6 +207,76 @@ Lança exceção (não encontrado)
 
 ---
 
+### 📚 Exercícios com Stack/Queue
+
+#### 5. **Valid Parentheses** (Validar Parênteses Balanceados)
+
+**Arquivo**: `LiveCoding.Lab.Core/Exercises/StackQueue/ValidParentheses.cs`
+
+**Descrição**:
+Verifica se uma string contém parênteses, colchetes e chaves balanceados e corretamente aninhados. Caracteres que não são delimitadores são ignorados.
+
+**Implementação**:
+- Usa `Stack<char>` para rastrear parênteses de abertura
+- Itera por cada caractere da string
+- Caracteres de abertura `(`, `[`, `{` são empilhados (push)
+- Caracteres de fechamento `)`, `]`, `}` são comparados com o topo da pilha
+- Caracteres não-delimitadores são ignorados
+- Retorna true se stack estiver vazia ao final (todos foram pareados)
+
+**Exemplo de Uso**:
+```csharp
+// Parênteses balanceados
+var result1 = ValidParentheses.Execute("{[()]}");
+Console.WriteLine(result1);  // Saída: true
+
+// Parênteses desbalanceados
+var result2 = ValidParentheses.Execute("{[(])}");
+Console.WriteLine(result2);  // Saída: false
+
+// Parênteses incompletos
+var result3 = ValidParentheses.Execute("(");
+Console.WriteLine(result3);  // Saída: false
+
+// String vazia é válida
+var result4 = ValidParentheses.Execute("");
+Console.WriteLine(result4);  // Saída: true
+```
+
+**Casos de Teste**:
+- ✅ `"{[()]}"` retorna true (balanceado e aninhado corretamente)
+- ✅ `"{[(])}"` retorna false (aninhamento inválido)
+- ✅ `"((()))"` retorna true (múltiplos parênteses)
+- ✅ `"("` retorna false (incompleto)
+- ✅ `""` retorna true (vazio é válido)
+- ✅ `null` retorna false (entrada nula)
+
+**Complexidade**:
+- Tempo: O(n) - itera uma vez sobre cada caractere
+- Espaço: O(n) - stack pode armazenar até n caracteres
+
+**Estrutura de Dados - Stack**:
+```
+Push (empilhar):     Adiciona elemento no topo
+Pop (desempilhar):   Remove e retorna elemento do topo
+Peek:                Visualiza elemento do topo sem remover
+Count:               Número de elementos na pilha
+
+Exemplo visual:
+     |  |
+     | c |  ← Pop() retorna 'c'
+     | b |  ← Topo
+     | a |
+     |___|
+```
+
+**Por que usar Stack?**
+- Estrutura LIFO (Last In, First Out) é perfeita para validar aninhamento
+- Parênteses de fechamento devem corresponder ao último de abertura
+- Stack garante a ordem correta de validação
+
+---
+
 ## 🚀 Como Usar
 
 ### Pré-requisitos
@@ -331,6 +405,7 @@ namespace LiveCoding.Lab.Core.Exercises.[Categoria]
 | 2 | Reverse String | String | ⭐ Fácil | O(n) / O(n) | Array reverse, String conversion |
 | 3 | Palindrome Check | String | ⭐⭐ Intermediário | O(n) / O(n) | Two-pointer, String normalization |
 | 4 | Two Sum | Array | ⭐⭐ Intermediário | O(n) / O(n) | Hash map, Complement calculation |
+| 5 | Valid Parentheses | Stack | ⭐⭐ Intermediário | O(n) / O(n) | Stack, Parsing, Aninhamento |
 
 ### Legenda:
 - **Tempo / Espaço**: Complexidade de Tempo / Espaço
@@ -340,8 +415,9 @@ namespace LiveCoding.Lab.Core.Exercises.[Categoria]
 
 ## 📈 Próximos Passos
 
-- [ ] Adicionar exercícios de arrays: Three Sum, Merge Sorted Arrays, Remove Duplicates
-- [ ] Exercícios de estruturas de dados: LinkedList, Stack, Queue
+- [ ] Adicionar exercícios de estruturas de dados: LinkedList, Min/Max Stack
+- [ ] Exercícios de Queue: Task Scheduler, Sliding Window
+- [ ] Exercícios de arrays avançados: Three Sum, Merge Sorted Arrays, Remove Duplicates
 - [ ] Algoritmos de ordenação: Bubble Sort, Merge Sort, Quick Sort
 - [ ] Exercícios de recursão e backtracking
 - [ ] Análise detalhada de complexidade com gráficos
