@@ -25,7 +25,8 @@ LiveCoding.Lab/
 │   │   │   ├── ReverseString.cs
 │   │   │   ├── PalindromeCheck.cs
 │   │   │   ├── CountCharacterOccurrences.cs
-│   │   │   └── AnagramCheck.cs
+│   │   │   ├── AnagramCheck.cs
+│   │   │   └── MinimumWindowSubstring.cs
 │   │   ├── Arrays/                   # Exercícios com arrays
 │   │   │   └── TwoSum.cs
 │   │   └── StackQueue/               # Exercícios com Stack/Queue
@@ -301,9 +302,53 @@ private static string Normalize(string input) =>
 
 ---
 
+#### 6. **Minimum Window Substring** (Menor Janela Substring)
+
+**Arquivo**: `LiveCoding.Lab.Core/Exercises/Strings/MinimumWindowSubstring.cs`
+
+**Descrição**:
+Encontra a menor substring de `s` que contém todos os caracteres (com suas quantidades) da string `t`. Problema clássico de sliding window.
+
+**Implementação (Sliding Window)**:
+- Cria um `need` com a contagem de caracteres de `t` e define `required = need.Count`
+- Expande a janela com ponteiro `right`, preenchendo `window` e contando quantos caracteres necessários foram atendidos (`formed`)
+- Quando `formed == required`, tenta encolher com ponteiro `left` para achar a menor janela
+- Atualiza a melhor janela sempre que encontrar um tamanho menor
+- Retorna string vazia se não houver janela válida
+
+**Exemplo de Uso**:
+```csharp
+var s = "ADOBECODEBANC";
+var t = "ABC";
+var result = MinimumWindowSubstring.Execute(s, t);
+Console.WriteLine(result);  // Saída: "BANC"
+```
+
+**Casos de Teste**:
+- ✅ `("ADOBECODEBANC", "ABC")` → `"BANC"`
+- ✅ `("a", "a")` → `"a"`
+- ✅ `("a", "aa")` → `""` (não há janela)
+- ✅ `("aa", "aa")` → `"aa"`
+- ✅ `("bba", "ab")` → `"ba"`
+- ✅ Entradas vazias/nulas retornam string vazia
+
+**Complexidade**:
+- Tempo: O(n + m) — passa pelos caracteres de `s` e `t`
+- Espaço: O(k) — dicionários `need` e `window` para caracteres únicos
+
+**Algoritmo (resumo)**:
+```
+1) Mapear contagem de t em need; required = chars únicos de t
+2) Percorrer s com right, atualizando window e formed
+3) Quando formed == required, mover left para encolher e salvar melhor janela
+4) Retornar menor janela encontrada ou string vazia
+```
+
+---
+
 ### 📦 Exercícios com Arrays
 
-#### 6. **Two Sum** (Encontrar Dois Números)
+#### 7. **Two Sum** (Encontrar Dois Números)
 
 **Arquivo**: `LiveCoding.Lab.Core/Exercises/Arrays/TwoSum.cs`
 
@@ -349,7 +394,7 @@ Lança exceção (não encontrado)
 
 ### 📚 Exercícios com Stack/Queue
 
-#### 7. **Valid Parentheses** (Validar Parênteses Balanceados)
+#### 8. **Valid Parentheses** (Validar Parênteses Balanceados)
 
 **Arquivo**: `LiveCoding.Lab.Core/Exercises/StackQueue/ValidParentheses.cs`
 
@@ -546,8 +591,9 @@ namespace LiveCoding.Lab.Core.Exercises.[Categoria]
 | 3 | Palindrome Check | String | ⭐⭐ Intermediário | O(n) / O(n) | Two-pointer, String normalization |
 | 4 | Count Character Occurrences | String | ⭐⭐ Intermediário | O(n) / O(k) | Hash map, Frequency counting |
 | 5 | Anagram Check | String | ⭐⭐ Intermediário | O(n+m) / O(k) | Hash map, String normalization |
-| 6 | Two Sum | Array | ⭐⭐ Intermediário | O(n) / O(n) | Hash map, Complement calculation |
-| 7 | Valid Parentheses | Stack | ⭐⭐ Intermediário | O(n) / O(n) | Stack, Parsing, Aninhamento |
+| 6 | Minimum Window Substring | String | ⭐⭐⭐ Avançado | O(n+m) / O(k) | Sliding window, Two pointers, Hash map |
+| 7 | Two Sum | Array | ⭐⭐ Intermediário | O(n) / O(n) | Hash map, Complement calculation |
+| 8 | Valid Parentheses | Stack | ⭐⭐ Intermediário | O(n) / O(n) | Stack, Parsing, Aninhamento |
 
 ### Legenda:
 - **Tempo / Espaço**: Complexidade de Tempo / Espaço
