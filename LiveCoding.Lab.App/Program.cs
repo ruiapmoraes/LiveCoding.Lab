@@ -21,7 +21,56 @@ var demos = new Dictionary<int, (string Title, Action Run)>
     {5, ("Stack/Queue: ValidParentheses", Demo_ValidParentheses) },
     {6, ("Strings: CountCharacterOccurrences", Demo_CountCharacterOccurrences) },
     {7, ("Strings: AnagramCheck", Demo_AnagramCheck) },
+    {8, ("Strings: GroupAnagrams", Demo_GroupAnagrams) },
+    {9, ("Strings: Longest Substring Without Repeating", Demo_LongestSubstring) },
+    {10, ("Strings: MinimumWindowSubstring", Demo_MinimumWindowSubstring) },
+
+
 };
+
+static void Demo_MinimumWindowSubstring()
+{
+    var cases = new[]
+    {
+        (s: "ADOBECODEBANC", t: "ABC"),
+        (s: "a", t: "a"),
+        (s: "a", t: "aa"),
+        (s: "aa", t: "aa"),
+        (s: "bba", t: "ab")
+    };
+
+    foreach (var (s, t) in cases)
+    {
+        var result = MinimumWindowSubstring.Execute(s, t);
+        Console.WriteLine($"s: {s} | t: {t} -> \"{result}\"");
+    }
+}
+
+static void Demo_LongestSubstring()
+{
+    var inputs = new[] { "abcabcbb", "bbbbb", "pwwkew", "", "dvdf" };
+
+    foreach (var input in inputs)
+    {
+        var len = LongestSubstringWithoutRepeatingCharacters.Execute(input);
+        Console.WriteLine($"Input: {input,-10} -> {len}");
+    }
+}
+
+
+static void Demo_GroupAnagrams() 
+{
+    var words = new[] {"eat", "tea", "tan", "ate", "nat", "bat"};
+
+    var groups = GroupAnagrams.Execute(words);
+
+    int i = 1;
+
+    foreach (var group in groups)
+    {
+        Console.WriteLine($"Group {i++}: {string.Join(", ", group)}");
+    }
+}
 
 static void Demo_ReverseString()
 {

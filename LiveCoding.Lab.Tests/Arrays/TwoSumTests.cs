@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LiveCoding.Lab.Core.Exercises.Arrays;
 
 namespace LiveCoding.Lab.Tests.Arrays;
 
@@ -13,10 +14,11 @@ public class TwoSumTests
         var nums = new[] { 2, 7, 11, 15 };
         var target = 9;
         // Act
-        var result = Core.Exercises.Arrays.TwoSum.Execute(nums, target);
+        var result = TwoSum.Execute(nums, target);
         // Assert
         Assert.Equal(new[] { 0, 1 }, result);
     }
+ 
     [Fact]
     public void Should_Throw_Exception_When_No_Solution()
     {
@@ -25,6 +27,6 @@ public class TwoSumTests
         var target = 7;
         // Act & Assert
         Assert.Throws<ArgumentException>(() =>
-            Core.Exercises.Arrays.TwoSum.Execute(nums, target));
+            TwoSum.Execute(nums, target));
     }
 }
